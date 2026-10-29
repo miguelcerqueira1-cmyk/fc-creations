@@ -482,9 +482,7 @@ const STAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.1 6.3 6
 const stars=n=>`<span class="stars" aria-label="${n} sur 5">${[1,2,3,4,5].map(i=>`<span class="${i<=n?"":"off"}">${STAR}</span>`).join("")}</span>`;
 
 /* ---------- catalogue data ---------- */
-const HOOPS=[
-  {id:"ecru",name:"Écru",c:"#EFE6D2"},{id:"terracotta",name:"Terracotta",c:"#A84C38"},{id:"bleu",name:"Bleu orage",c:"#4F6D8C"},
-  {id:"violet",name:"Violet prune",c:"#7B5E8C"},{id:"sauge",name:"Vert sauge",c:"#8A9A86"},{id:"moutarde",name:"Moutarde",c:"#C99A3B"},{id:"rose",name:"Rose poudré",c:"#D9A5A0"}];
+const HOOPS=[{id:"blanc",name:"Blanc",c:"#F7F5F0"},{id:"noir",name:"Noir",c:"#26201D"}];
 const FEATHERS=[
   {id:"blanc",name:"Blanc neige",c:"#F7F3EC"},{id:"naturel",name:"Naturel",c:"#C8B49A"},{id:"terracotta",name:"Terracotta",c:"#B5634D"},
   {id:"perle",name:"Gris perle",c:"#B4B1AC"},{id:"rose",name:"Rose",c:"#DDA7A5"},{id:"sauge",name:"Sauge",c:"#9AAB95"},{id:"nuit",name:"Bleu nuit",c:"#34445C"}];
@@ -616,7 +614,7 @@ const MODES={stock:"Prêt à l'envoi",order:"Fait à la commande",custom:"Sur-me
 
 const REVIEWS=[
   {n:"Camille",city:"Lyon",p:"lutin",s:5,d:"septembre 2026",t:"Le lutin est encore plus beau en vrai. Le petit mot écrit à la main m'a beaucoup touchée, toute la famille a craqué."},
-  {n:"Sophie",city:"Nantes",p:"surmesure",s:5,d:"août 2026",t:"J'ai composé un attrape-rêves terracotta et sauge pour la chambre de ma fille. Fabienne m'a envoyé une photo avant l'envoi, c'était exactement ce que j'imaginais."},
+  {n:"Sophie",city:"Nantes",p:"surmesure",s:5,d:"août 2026",t:"J'ai composé un attrape-rêves au cercle blanc et aux plumes sauge pour la chambre de ma fille. Fabienne m'a envoyé une photo avant l'envoi, c'était exactement ce que j'imaginais."},
   {n:"Marc",city:"Toulouse",p:"gilet-kaki",s:5,d:"juillet 2026",t:"Gilet très chaud et bien fini, je le porte tout le temps. On sent le travail derrière chaque maille."},
   {n:"Inès",city:"Bordeaux",p:"hippo-creme",s:4,d:"juin 2026",t:"Doudou adorable, livré dans les délais annoncés. J'en reprendrai un pour la petite sœur."},
   {n:"Julie",city:"Lille",p:"mandala-dore",s:5,d:"mai 2026",t:"Emballage magnifique, papier de soie et ficelle. Le mandala est superbe au-dessus du lit."},
@@ -641,7 +639,7 @@ const FEED=[
 
 /* ---------- state ---------- */
 const S={view:"home",pid:null,filter:"all",mode:"all",cart:[],gift:false,giftMsg:"",carrier:"mr",
-  custom:{size:"M",hoop:"terracotta",feather:"naturel",ribbons:["dentelle","satin"],beads:true},
+  custom:{size:"M",hoop:"blanc",feather:"naturel",ribbons:["dentelle","satin"],beads:true},
   pdThumb:"face",pdTab:"desc",pdQty:1,drawer:false,navOpen:false,
   fair:{mat:11,h:3,rate:12,fees:3,marg:15},reviews:REVIEWS.slice()};
 try{const saved=JSON.parse(localStorage.getItem("fc-cart")||"null");if(Array.isArray(saved))S.cart=saved}catch(e){}
@@ -856,7 +854,7 @@ function feedHTML(){return FEED.map(f=>{const p=PRODUCTS.find(x=>x.id===f.p);ret
 function configurator(prefix){
   const c=S.custom;
   return `<div class="opt-group"><div class="opt-label">Taille <span>${SIZES[c.size].d}</span></div><div class="sizes">${Object.entries(SIZES).map(([k,z])=>`<button class="size" data-act="size" data-v="${k}" aria-pressed="${c.size===k}"><b>${z.name}</b><span>${z.d} · ${eur(z.price)}</span></button>`).join("")}</div></div>
-  <div class="opt-group"><div class="opt-label">Couleur du cercle et de la toile <span>${byId(HOOPS,c.hoop).name}</span></div><div class="swatches">${HOOPS.map(h=>`<button class="swatch" style="background:${h.c}" data-act="hoop" data-v="${h.id}" aria-pressed="${c.hoop===h.id}" aria-label="Cercle ${h.name}" title="${h.name}"></button>`).join("")}</div></div>
+  <div class="opt-group"><div class="opt-label">Couleur du cercle <span>${byId(HOOPS,c.hoop).name}</span></div><div class="swatches">${HOOPS.map(h=>`<button class="swatch" style="background:${h.c}" data-act="hoop" data-v="${h.id}" aria-pressed="${c.hoop===h.id}" aria-label="Cercle ${h.name}" title="${h.name}"></button>`).join("")}</div></div>
   <div class="opt-group"><div class="opt-label">Couleur des plumes <span>${byId(FEATHERS,c.feather).name}</span></div><div class="swatches">${FEATHERS.map(h=>`<button class="swatch" style="background:${h.c}" data-act="feather" data-v="${h.id}" aria-pressed="${c.feather===h.id}" aria-label="Plumes ${h.name}" title="${h.name}"></button>`).join("")}</div></div>
   ${prefix==="teaser"?"":`<div class="opt-group"><div class="opt-label">Bandes et rubans <span>${c.ribbons.length} / 3 choisis</span></div><div class="swatches">${RIBBONS.map(r=>`<button class="rib" data-act="ribbon" data-v="${r.id}" aria-pressed="${c.ribbons.includes(r.id)}"><i style="background:${r.c}"></i>${r.name}</button>`).join("")}</div></div>
   <label class="check"><input type="checkbox" id="opt-beads" data-bind="beads" ${c.beads?"checked":""}><span><b>Perles en bois d'olivier</b> <span class="muted">+ 4 €</span></span></label>`}`;
@@ -865,7 +863,7 @@ function summaryHTML(){
   const c=S.custom,z=SIZES[c.size],p=PRODUCTS.find(x=>x.id==="surmesure");
   const rib=c.ribbons.length?c.ribbons.map(id=>byId(RIBBONS,id).name).join(", "):"Sans ruban";
   return `<div class="summary" aria-live="polite"><h4>Votre attrape-rêves</h4><dl class="kv">
-  <dt>Taille</dt><dd>${z.name}, ${z.d}</dd><dt>Cercle & toile</dt><dd>${byId(HOOPS,c.hoop).name}</dd><dt>Plumes</dt><dd>${byId(FEATHERS,c.feather).name}</dd>
+  <dt>Taille</dt><dd>${z.name}, ${z.d}</dd><dt>Cercle</dt><dd>${byId(HOOPS,c.hoop).name}</dd><dt>Plumes</dt><dd>${byId(FEATHERS,c.feather).name}</dd>
   <dt>Rubans</dt><dd>${esc(rib)}</dd><dt>Perles bois</dt><dd>${c.beads?"Oui (+ 4 €)":"Non"}</dd><dt>Confection</dt><dd>${p.conf[0]} à ${p.conf[1]} jours ouvrés</dd>
   <dt class="tot">Prix</dt><dd class="tot">${eur(customPrice(c))}</dd></dl></div>`;
 }
@@ -936,7 +934,7 @@ V.home=()=>`
   <div class="feed">${feedHTML()}</div>
 </div></section>`;
 function heroArt(){
-  const inner=dcArt({hoop:"terracotta",feather:"naturel",ribbons:["dentelle","satin","lin"],size:"L",beads:true});
+  const inner=dcArt({hoop:"blanc",feather:"naturel",ribbons:["dentelle","satin","lin"],size:"L",beads:true});
   return `<svg viewBox="0 0 200 240" role="img" aria-label="Attrape-rêves terracotta aux plumes naturelles"><rect width="200" height="240" fill="#EAD9CB"/><circle cx="100" cy="100" r="92" fill="#F5EFE6" opacity=".55"/><g class="sway">${inner}</g></svg>`;
 }
 function portraitArt(){
