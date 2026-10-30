@@ -589,6 +589,7 @@ const PRODUCTS=[
    art:{k:"dc"},bg:"#EDE0D2",care:"reve",
    desc:"Choisissez la taille, la couleur du cercle, des plumes et jusqu'à trois rubans. Fabienne le réalise pour vous et vous envoie une photo avant l'expédition."}
 ];
+const MATIERES={peluches:"Laine, rembourrage",noel:"Laine, rembourrage",vetements:"Laine",reves:"Fil de coton, cercle, plumes, rubans, perles"};
 const CATS={all:"Tout",peluches:"Peluches & doudous",noel:"Noël",reves:"Attrape-rêves",vetements:"Vêtements"};
 const MODES={stock:"Prêt à l'envoi",order:"Fait à la commande",custom:"Sur-mesure"};
 
@@ -1028,7 +1029,7 @@ function tabHTML(p){
   </tbody></table></div>
   <p class="small muted">Supplément format : colis moyen + 1 €, grand colis + 2,50 €. Tarifs indicatifs de la maquette, à ajuster sur vos grilles réelles.</p>`;
   const dims=z?z.dims:p.dims, w=z?z.weight:p.weight;
-  return `<dl class="kv" style="max-width:460px"><dt>Catégorie</dt><dd>${CATS[p.cat]}</dd><dt>Mode d'achat</dt><dd>${MODES[p.mode]}</dd>${p.size?`<dt>Dimensions</dt><dd>${esc(p.size)}</dd>`:""}<dt>Poids de l'article</dt><dd>${w} g</dd><dt>Carton d'envoi</dt><dd>${dims.join(" × ")} cm</dd><dt>Fabrication</dt><dd>Atelier FC Créations, France</dd></dl>`;
+  return `<dl class="kv" style="max-width:460px"><dt>Catégorie</dt><dd>${CATS[p.cat]}</dd><dt>Mode d'achat</dt><dd>${MODES[p.mode]}</dd>${p.size?`<dt>Dimensions</dt><dd>${esc(p.size)}</dd>`:""}<dt>Matières</dt><dd>${MATIERES[p.cat]||""}</dd><dt>Poids de l'article</dt><dd>${w} g</dd><dt>Carton d'envoi</dt><dd>${dims.join(" × ")} cm</dd><dt>Fabrication</dt><dd>Atelier FC Créations, France</dd></dl>`;
 }
 
 V.custom=()=>`
