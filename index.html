@@ -244,12 +244,6 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent)}
 .care div{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:var(--surface-2);border-radius:12px;padding:12px}
 .care svg{width:38px;height:38px}
 .care b{display:block;font-size:.93rem}.care span{font-size:.85rem;color:var(--ink-soft)}
-.fairbar{display:flex;height:16px;border-radius:999px;overflow:hidden;background:var(--surface-2)}
-.fairbar i{display:block;height:100%;transition:width .3s}
-.fb-mat{background:#8A9A86}.fb-time{background:#A84C38}.fb-fees{background:#C9A57A}.fb-marg{background:#5E2416}
-.legend{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:.92rem;align-items:center;font-variant-numeric:tabular-nums}
-.legend i{width:12px;height:12px;border-radius:3px;display:block}
-.legend b{text-align:right}
 .table-wrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
 th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
@@ -324,17 +318,7 @@ td.num,th.num{text-align:right}
 .success{background:var(--sage-soft);color:var(--ink);border-radius:var(--r);padding:20px;display:grid;gap:8px}
 .success h3{color:var(--sage-ink)}
 
-/* fair price page */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
-.calc>*{min-width:0}
-.range{display:grid;gap:6px}
-.range .top{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:.95rem}
-.range .top output{font-variant-numeric:tabular-nums;color:var(--accent)}
-.range input{width:100%;accent-color:var(--accent)}
-.result{background:var(--surface);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);display:grid;gap:18px;position:sticky;top:96px}
-.result .big{font-family:var(--f-display);font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
 .callout{border-left:3px solid var(--sage);padding:4px 0 4px 14px;color:var(--ink-soft);font-size:.93rem}
-@media (max-width:860px){.calc{grid-template-columns:1fr}.result{position:static}}
 
 /* footer */
 footer.site{background:var(--surface);border-top:1px solid var(--line);margin-top:0}
@@ -432,7 +416,6 @@ footer.site{background:var(--surface);border-top:1px solid var(--line);margin-to
       <div>
         <h4>Infos pratiques</h4>
         <div class="foot-links">
-          <button data-go="fair">Pourquoi ce prix ?</button>
           <button data-act="legal" data-v="livraison">Livraison &amp; retours</button>
           <button data-act="legal" data-v="cgv">Conditions générales de vente</button>
           <button data-act="legal" data-v="mentions">Mentions légales</button>
@@ -644,7 +627,7 @@ const FEED=[
 const S={view:"home",pid:null,filter:"all",mode:"all",cart:[],gift:false,giftMsg:"",carrier:"mr",
   custom:{size:"M",hoop:"blanc",feather:"naturel",ribbons:["dentelle","satin"],beads:true},
   pdThumb:"face",pdTab:"desc",pdQty:1,drawer:false,navOpen:false,
-  fair:{mat:11,h:3,rate:12,fees:3,marg:15},reviews:REVIEWS.slice()};
+  reviews:REVIEWS.slice()};
 try{const saved=JSON.parse(localStorage.getItem("fc-cart")||"null");if(Array.isArray(saved))S.cart=saved}catch(e){}
 const saveCart=()=>{try{localStorage.setItem("fc-cart",JSON.stringify(S.cart))}catch(e){}};
 
@@ -796,14 +779,6 @@ function logoFull(){
 
 /* ---------- pricing, shipping, delays ---------- */
 const customPrice=c=>SIZES[c.size].price+(c.beads?2:0);
-function fairOf(p,custom){
-  let mat,h,price;
-  if(p.mode==="custom"){const c=custom||S.custom,z=SIZES[c.size];mat=z.mat+(c.beads?.5:0);h=z.h;price=customPrice(c)}
-  else{if(!p.fair)return null;mat=p.fair.mat;h=p.fair.h;price=p.price}
-  // cotisations micro-entreprise (12,3 %) + emballage et frais de paiement
-  const fees=price*.123+(price<20?2:price<50?2.5:3);
-  return {mat,h,price,fees,labor:Math.max(0,price-mat-fees)};
-}
 const RATES={
   mr:{name:"Mondial Relay",sub:"Point Relais",tiers:[[500,4.5],[1000,5.2],[2000,6.9],[5000,10.9],[10000,15.9]]},
   co:{name:"Colissimo",sub:"À domicile, contre signature",tiers:[[250,5.45],[500,7.65],[750,8.85],[1000,9.55],[2000,10.95],[5000,16.85],[10000,24.4]]}
@@ -983,6 +958,7 @@ V.product=()=>{
       <div class="pd-title">${modePill(p)}<h1 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">${esc(p.name)}</h1><p class="muted">${esc(p.sub)}</p>
         <div class="pd-price" id="pd-price">${eur(isC?customPrice(S.custom):p.price)} <small>${p.draft?"prix provisoire · ":""}TVA non applicable</small></div></div>
       <p>${esc(p.desc)}</p>
+      ${isC?"":`<p class="muted small" style="display:flex;gap:8px;align-items:flex-start">${ico("heart")}<span>Chaque pièce est crochetée à la main par Fabienne, maille après maille, pendant plusieurs heures.</span></p>`}
       ${p.mode==="order"?`<p class="callout">Modèle réalisé à la commande : votre pièce sera très proche de la photo, avec les petites variations naturelles du fait main.</p>`:""}
       ${isC?`<div class="panel"><h4>${ico("sparkle")}Personnalisation</h4><div id="pd-config" style="display:grid;gap:18px">${configurator("pd")}</div></div><div id="pd-summary">${summaryHTML()}</div>`:""}
       <div class="panel">
@@ -999,7 +975,7 @@ V.product=()=>{
       </div>
       <div class="panel" id="pd-ship">${shipPanel(p)}</div>
       <div>
-        <div class="tabs" role="tablist">${[["desc","Détails"],["care","Carnet de soins"],["fair","Prix juste"],["ship","Livraison"]].map(([k,v])=>`<button role="tab" data-act="tab" data-v="${k}" aria-selected="${S.pdTab===k}">${v}</button>`).join("")}</div>
+        <div class="tabs" role="tablist">${[["desc","Détails"],["care","Carnet de soins"],["ship","Livraison"]].map(([k,v])=>`<button role="tab" data-act="tab" data-v="${k}" aria-selected="${S.pdTab===k}">${v}</button>`).join("")}</div>
         <div class="tabpanel" role="tabpanel" id="pd-tab">${tabHTML(p)}</div>
       </div>
     </div>
@@ -1049,20 +1025,9 @@ function careHTML(type){
   return `<div class="care">${C.map(([k,t,s])=>`<div><svg viewBox="0 0 38 38" style="color:var(--sage-ink)" aria-hidden="true">${pic[k]}</svg><span><b>${t}</b><span>${s}</span></span></div>`).join("")}</div>
   <p class="muted small">Une fiche « Carnet de soins » imprimée est glissée dans chaque colis.</p>`;
 }
-const dureeFr=h=>h<1?`${Math.round(h*60)} min`:`${Math.floor(h)} h${h%1?" "+String(Math.round(h%1*60)).padStart(2,"0"):""}`;
-function fairHTML(f,showLink=true){
-  const pc=x=>Math.max(0,x/f.price*100).toFixed(1)+"%";
-  return `<div class="fairbar" aria-hidden="true"><i class="fb-mat" style="width:${pc(f.mat)}"></i><i class="fb-time" style="width:${pc(f.labor)}"></i><i class="fb-fees" style="width:${pc(f.fees)}"></i></div>
-  <div class="legend"><i class="fb-mat"></i><span>Matières (laine, rembourrage, yeux, plumes, cercle…)</span><b>${eur(Math.round(f.mat*100)/100)}</b>
-  <i class="fb-time"></i><span>Travail de Fabienne : environ ${dureeFr(f.h)} de crochet et d'assemblage</span><b>${eur(Math.round(f.labor))}</b>
-  <i class="fb-fees"></i><span>Emballage, frais de paiement et cotisations</span><b>${eur(Math.round(f.fees))}</b>
-  <span></span><span><b>Prix de vente</b></span><b>${eur(f.price)}</b></div>
-  ${showLink?`<p class="small muted">L'essentiel du prix rémunère le temps passé à la main sur chaque pièce. <button class="link-btn" data-go="fair">Comprendre le calcul</button></p>`:""}`;
-}
 function tabHTML(p){
   const z=p.mode==="custom"?SIZES[S.custom.size]:null;
   if(S.pdTab==="care")return careHTML(p.care);
-  if(S.pdTab==="fair"){const f=fairOf(p);return f?fairHTML(f):`<p>${p.fairNote?esc(p.fairNote):"Le détail du prix (matières, temps de travail, marge) sera bientôt affiché pour cette création."}</p><p class="small muted"><button class="link-btn" data-go="fair">Comprendre comment un prix fait main se construit</button></p>`}
   if(S.pdTab==="ship")return `<p>Envoi en France métropolitaine. Les frais sont calculés selon le <b>poids</b> du colis (tranche) et son <b>volume</b> (format). Emballage et calage comptent pour 150 g.</p>
   <div class="table-wrap"><table><thead><tr><th>Tranche de poids</th><th class="num">Mondial Relay</th><th class="num">Colissimo</th></tr></thead><tbody>
   ${["≤ 250 g","250 – 500 g","500 g – 1 kg","1 – 2 kg","2 – 5 kg"].map((t,i)=>{const mr=[4.5,4.5,5.2,6.9,10.9][i],co=[5.45,7.65,9.55,10.95,16.85][i];return `<tr><td>${t}</td><td class="num">${eur(mr)}</td><td class="num">${eur(co)}</td></tr>`}).join("")}
@@ -1101,36 +1066,6 @@ V.custom=()=>`
     <p class="callout">Les créations personnalisées ne bénéficient pas du droit de rétractation (art. L221-28 du Code de la consommation). C'est pour cela que chaque étape est validée avec vous.</p>
   </aside>
 </div></section>`;
-
-V.fair=()=>`
-<section class="band" style="padding-top:40px"><div class="wrap">
-  <div style="display:grid;gap:10px;margin-bottom:32px"><span class="eyebrow">Calculateur de prix équitable</span><h1 style="font-size:clamp(1.9rem,4vw,2.8rem)">Pourquoi ce prix ?</h1>
-  <p class="lead">Un attrape-rêves demande trois heures de gainage, de tissage et de montage. Voici comment un prix fait main en France se construit, ligne par ligne. Jouez avec les curseurs.</p></div>
-  <div class="calc">
-    <div style="display:grid;gap:22px">
-      <div class="chips" role="group" aria-label="Exemples">${[["reve","Attrape-rêves moyen"],["lutin","Lutin de Noël"],["gilet","Gilet adulte"]].map(([k,v])=>`<button class="chip" data-act="preset" data-v="${k}">${v}</button>`).join("")}</div>
-      ${rangeHTML("mat","Matières premières",0,60,1," €")}
-      ${rangeHTML("h","Temps de travail",.5,12,.5," h")}
-      ${rangeHTML("rate","Taux horaire",10,25,.5," €/h")}
-      ${rangeHTML("fees","Frais fixes (emballage, commission de paiement)",0,15,.5," €")}
-      ${rangeHTML("marg","Marge de l'atelier",0,50,1," %")}
-      <p class="callout">Repère : le SMIC horaire brut est d'environ 12 €. Beaucoup d'artisans se paient bien moins, faute d'oser afficher leur temps.</p>
-    </div>
-    <div class="result" id="fair-out">${fairResult()}</div>
-  </div>
-</div></section>`;
-function rangeHTML(k,label,min,max,step,unit){
-  return `<div class="range"><div class="top"><label for="fr-${k}">${label}</label><output id="fo-${k}">${String(S.fair[k]).replace(".",",")}${unit}</output></div><input type="range" id="fr-${k}" data-bind="fair" data-k="${k}" data-unit="${unit}" min="${min}" max="${max}" step="${step}" value="${S.fair[k]}"></div>`;
-}
-function fairResult(){
-  const f=S.fair,labor=f.h*f.rate,base=f.mat+labor+f.fees,marg=base*f.marg/100,price=base+marg;
-  const cot=price*.123,net=(price-f.mat-f.fees-cot)/f.h, pc=x=>(x/price*100).toFixed(1)+"%";
-  return `<span class="eyebrow">Prix de vente conseillé</span><div class="big">${eur(Math.round(price))}</div>
-  <div class="fairbar" aria-hidden="true"><i class="fb-mat" style="width:${pc(f.mat)}"></i><i class="fb-time" style="width:${pc(labor)}"></i><i class="fb-fees" style="width:${pc(f.fees)}"></i><i class="fb-marg" style="width:${pc(marg)}"></i></div>
-  <div class="legend"><i class="fb-mat"></i><span>Matières premières</span><b>${eur(f.mat)}</b><i class="fb-time"></i><span>Temps : ${String(f.h).replace(".",",")} h × ${eur(f.rate)}</span><b>${eur(labor)}</b><i class="fb-fees"></i><span>Frais fixes</span><b>${eur(f.fees)}</b><i class="fb-marg"></i><span>Marge (${f.marg} %)</span><b>${eur(marg)}</b></div>
-  <dl class="kv"><dt>Cotisations micro-entreprise (12,3 %)</dt><dd>− ${eur(cot)}</dd><dt class="tot">Ce qu'il reste à Fabienne par heure</dt><dd class="tot">${eur(Math.max(0,net))}</dd></dl>
-  <p class="small muted">Formule : (matières + temps × taux + frais) × (1 + marge). Taux de cotisation indicatif pour la vente de marchandises, à vérifier sur autoentrepreneur.urssaf.fr.</p>`;
-}
 
 V.reviews=()=>{
   const avg=(S.reviews.reduce((a,r)=>a+r.s,0)/S.reviews.length);
@@ -1201,7 +1136,7 @@ const LEGAL={
 };
 
 /* ---------- navigation ---------- */
-const NAV=[["home","Accueil"],["shop","Boutique"],["product","Personnaliser","surmesure"],["custom","Sur-mesure"],["fair","Prix juste"],["reviews","Avis"]];
+const NAV=[["home","Accueil"],["shop","Boutique"],["product","Personnaliser","surmesure"],["custom","Sur-mesure"],["reviews","Avis"]];
 function renderNav(){
   const cur=v=>{if(v[0]==="product")return S.view==="product"&&S.pid==="surmesure";return S.view===v[0]};
   const html=NAV.map(v=>`<button data-go="${v[0]}" ${v[2]?`data-id="${v[2]}"`:""} ${cur(v)?'aria-current="page"':""}>${v[1]}</button>`).join("");
@@ -1252,7 +1187,6 @@ const ACT={
   checkout:()=>{const L=cartLines(),sub=L.reduce((a,l)=>a+l.price*l.qty,0),q=quote(L,S.carrier,S.gift),tot=sub+(S.gift?3.9:0)+q.price;
     modal(`<h3>Étape suivante : le paiement</h3><p>Sur le site en ligne, ce bouton ouvre la page de paiement sécurisée (Shopify Checkout, WooCommerce + Stripe ou lien de paiement Stripe), avec l'adresse de livraison et le choix du point relais.</p>
     <dl class="kv"><dt>Articles</dt><dd>${cartCount()}</dd><dt>Livraison</dt><dd>${RATES[S.carrier].name}, ${eur(q.price)}</dd>${S.gift?`<dt>Emballage cadeau</dt><dd>Oui</dd>`:""}<dt class="tot">Total à payer</dt><dd class="tot">${eur(tot)}</dd></dl><p class="mock-note">Maquette : aucun paiement n'est effectué.</p>`)},
-  preset:t=>{S.fair={reve:{mat:11,h:3,rate:12,fees:3,marg:15},lutin:{mat:5,h:2.5,rate:12,fees:3,marg:15},gilet:{mat:15,h:10,rate:12,fees:4,marg:15}}[t.dataset.v];render()}
 };
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-go],[data-act],[data-add]");if(!t)return;
@@ -1266,9 +1200,8 @@ const BIND={
   gift:t=>{S.gift=t.checked;const gb=$("#gift-box");if(gb)gb.hidden=!S.gift;const pd=$("#gift-pd");if(pd)pd.checked=S.gift;const cb=$("#gift-cart-box");if(cb)cb.hidden=!S.gift;refreshShip();if(t.id==="gift-cart")refreshDrawer();else refreshDrawer()},
   giftMsg:t=>{S.giftMsg=t.value;const pv=$("#gift-preview");if(pv)pv.innerHTML=`${esc(S.giftMsg)||"Votre mot apparaîtra ici…"}<small>— écrit par Fabienne</small>`;
     ["#gift-msg-pd","#gift-msg-cart"].forEach(s=>{const el=$(s);if(el&&el!==t)el.value=S.giftMsg})},
-  fair:t=>{S.fair[t.dataset.k]=+t.value;$("#fo-"+t.dataset.k).textContent=String(+t.value).replace(".",",")+t.dataset.unit;$("#fair-out").innerHTML=fairResult()}
 };
-["input","change"].forEach(ev=>document.addEventListener(ev,e=>{const b=e.target.dataset&&e.target.dataset.bind;if(!b)return;if(b==="giftMsg"&&ev==="change")return;if(b==="fair"&&ev==="change")return;if((b==="gift"||b==="beads")&&ev==="input")return;BIND[b](e.target)}));
+["input","change"].forEach(ev=>document.addEventListener(ev,e=>{const b=e.target.dataset&&e.target.dataset.bind;if(!b)return;if(b==="giftMsg"&&ev==="change")return;if((b==="gift"||b==="beads")&&ev==="input")return;BIND[b](e.target)}));
 
 function bindCustomForm(){
   if(S.preset){$("#cf-type").value=S.preset;$("#cf-desc").placeholder="Ex. : le renne de Noël avec sa sacoche rouge, environ 25 cm, pour un enfant de 3 ans…"}
