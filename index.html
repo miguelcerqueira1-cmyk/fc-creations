@@ -491,91 +491,91 @@ const RIBBONS=[
   {id:"lin",name:"Lin naturel",c:"#CDBB9C",w:6,dash:"8 2"},{id:"satin",name:"Satin sauge",c:"#9AAB95",w:5},
   {id:"coton",name:"Coton bleu",c:"#5D7896",w:5},{id:"jute",name:"Jute",c:"#A88B5E",w:4,dash:"5 2"},{id:"mousseline",name:"Mousseline rose",c:"#E2B3AE",w:6}];
 const SIZES={
-  S:{name:"Petit",d:"Ø 15 cm",price:45,mat:8,h:2.5,weight:120,dims:[25,20,5]},
-  M:{name:"Moyen",d:"Ø 22 cm",price:59,mat:11,h:3,weight:200,dims:[32,26,6]},
-  L:{name:"Grand",d:"Ø 30 cm",price:75,mat:15,h:4,weight:320,dims:[42,34,7]}};
+  S:{name:"Petit",d:"Ø 15 cm",price:29,mat:3,h:2,weight:120,dims:[25,20,5]},
+  M:{name:"Moyen",d:"Ø 22 cm",price:35,mat:4,h:2.5,weight:200,dims:[32,26,6]},
+  L:{name:"Grand",d:"Ø 30 cm",price:45,mat:5,h:3,weight:320,dims:[42,34,7]}};
 const RATE=12; // €/h, référence proche du SMIC horaire brut
 
 const PRODUCTS=[
-  {id:"lutin",cat:"noel",name:"Lutin de Noël",sub:"Poupée au crochet · 40 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:350,dims:[44, 26, 15],size:"40 cm de haut",care:"poupee",
+  {id:"lutin",cat:"noel",name:"Lutin de Noël",sub:"Poupée au crochet · 40 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:350,dims:[44, 26, 15],size:"40 cm de haut",care:"poupee",
    photos:["img/lutin-assis.jpg", "img/lutin-visage.jpg", "img/lutin.jpg"],
    desc:"Bonnet rouge à pompon, écharpe, tunique verte à ceinture, collants rayés et petites bottes : chaque détail est crocheté et cousu à la main. Assis sur une étagère ou au pied du sapin, il annonce Noël dans toute la maison."},
-  {id:"lutine",cat:"noel",name:"Lutine aux fils d'argent",sub:"Poupée au crochet · 38 cm, finitions scintillantes",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:350,dims:[42, 26, 15],size:"38 cm de haut",care:"poupee",
+  {id:"lutine",cat:"noel",name:"Lutine aux fils d'argent",sub:"Poupée au crochet · 38 cm, finitions scintillantes",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:350,dims:[42, 26, 15],size:"38 cm de haut",care:"poupee",
    photos:["img/lutine-proche.jpg", "img/lutine-visage.jpg", "img/lutine.jpg"],
    desc:"La compagne du lutin : robe verte, col et bonnet traversés de fils argentés qui accrochent la lumière du sapin. Une décoration de Noël à garder d'une année sur l'autre."},
-  {id:"casse-rouge",cat:"noel",name:"Casse-noisette Soldat rouge",sub:"Figurine au crochet · 54 cm, veste rouge",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:500,dims:[58, 28, 18],size:"54 cm de haut",care:"poupee",
+  {id:"casse-rouge",cat:"noel",name:"Casse-noisette Soldat rouge",sub:"Figurine au crochet · 54 cm, veste rouge",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:500,dims:[58, 28, 18],size:"54 cm de haut",care:"poupee",
    photos:["img/casse-noisette.jpg", "img/casse-noisette-detail.jpg"],
    desc:"Le soldat de Noël en veste rouge, crocheté maille après maille. Il monte la garde sur une cheminée ou une étagère pendant toute la saison des fêtes."},
-  {id:"casse-or",cat:"noel",fairNote:"Une pièce d'exception : 70 cm, de nombreux détails et plusieurs jours de crochet, au fil des journées. Son prix reste bien en dessous du temps réellement passé.",name:"Casse-noisette Boutons d'or",sub:"Figurine au crochet · 70 cm, galons dorés",mode:"stock",stock:1,price:169,draft:false,weight:650,dims:[75, 30, 20],size:"70 cm de haut",care:"poupee",
+  {id:"casse-or",cat:"noel",name:"Casse-noisette Boutons d'or",sub:"Figurine au crochet · 70 cm, galons dorés",mode:"stock",stock:1,price:79,draft:false,fair:{mat:6,h:12},weight:650,dims:[75, 30, 20],size:"70 cm de haut",care:"poupee",
    photos:["img/casse2.jpg", "img/casse2-buste.jpg", "img/casse2-34.jpg"],
    desc:"Veste à boutons dorés, épaulettes à franges et chapeau haut : un casse-noisette tout en détails, pour une décoration de Noël élégante."},
-  {id:"gnome-neige",cat:"noel",name:"Gnome des neiges",sub:"Gnome au crochet · 60 cm, bonnet blanc",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:450,dims:[64, 26, 20],size:"60 cm de haut",care:"poupee",
+  {id:"gnome-neige",cat:"noel",name:"Gnome des neiges",sub:"Gnome au crochet · 60 cm, bonnet blanc",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:450,dims:[64, 26, 20],size:"60 cm de haut",care:"poupee",
    photos:["img/gnome-blanc.jpg", "img/gnome-blanc-34.jpg"],
    desc:"Grand bonnet blanc et longue barbe en franges : un petit gnome tout doux qui se glisse sur une table de fête ou au pied du sapin."},
-  {id:"gnome-bois",cat:"noel",name:"Gnome des bois",sub:"Gnome au crochet · 60 cm, bonnet vert",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:450,dims:[64, 26, 20],size:"60 cm de haut",care:"poupee",
+  {id:"gnome-bois",cat:"noel",name:"Gnome des bois",sub:"Gnome au crochet · 60 cm, bonnet vert",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:450,dims:[64, 26, 20],size:"60 cm de haut",care:"poupee",
    photos:["img/gnome-vert.jpg"],
    desc:"Le cousin du gnome des neiges, bonnet vert sapin et barbe en franges. Ensemble, ils forment un joli duo de Noël."},
-  {id:"chat",cat:"peluches",name:"Petit chat gris",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:29,draft:false,fair:{mat:3,h:4},weight:120,dims:[20, 16, 12],size:"15 cm de haut",care:"peluche",
+  {id:"chat",cat:"peluches",name:"Petit chat gris",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:22,draft:false,fair:{mat:1.5,h:3},weight:120,dims:[20, 16, 12],size:"15 cm de haut",care:"peluche",
    photos:["img/chat.jpg", "img/chat-profil.jpg"],
    desc:"Un chat gris tout en rondeurs, oreilles dressées et regard malicieux, crocheté et brodé à la main."},
-  {id:"chien",cat:"peluches",name:"Chien Biscuit",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:29,draft:false,fair:{mat:3,h:4},weight:120,dims:[20, 16, 12],size:"15 cm de haut",care:"peluche",
+  {id:"chien",cat:"peluches",name:"Chien Biscuit",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:22,draft:false,fair:{mat:1.5,h:3},weight:120,dims:[20, 16, 12],size:"15 cm de haut",care:"peluche",
    photos:["img/chien-face.jpg", "img/chien-34.jpg"],
    desc:"Un chien câlin aux grandes oreilles tombantes, idéal pour un premier doudou ou une étagère de chambre d'enfant."},
-  {id:"lapin-vert",cat:"peluches",name:"Lapin Pistache",sub:"Peluche au crochet · 40 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:300,dims:[44, 26, 15],size:"40 cm de haut",care:"peluche",
+  {id:"lapin-vert",cat:"peluches",name:"Lapin Pistache",sub:"Peluche au crochet · 40 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:300,dims:[44, 26, 15],size:"40 cm de haut",care:"peluche",
    photos:["img/lapin-vert-face.jpg", "img/lapin-vert-detail.jpg"],
    desc:"Un lapin vert tendre aux longues oreilles, cousu pièce par pièce et rembourré pour rester bien moelleux."},
-  {id:"loup",cat:"peluches",name:"Petit loup",sub:"Peluche au crochet · 45 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:330,dims:[48, 28, 15],size:"45 cm de haut",care:"peluche",
+  {id:"loup",cat:"peluches",name:"Petit loup",sub:"Peluche au crochet · 45 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:330,dims:[48, 28, 15],size:"45 cm de haut",care:"peluche",
    photos:["img/loup-face.jpg", "img/loup-detail.jpg"],
    desc:"Un petit loup pas méchant du tout, avec son pelage en franges et sa bouille de doudou."},
-  {id:"monstre",cat:"peluches",name:"Petit monstre rose",sub:"Peluche au crochet · 40 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:300,dims:[44, 26, 15],size:"40 cm de haut",care:"peluche",
+  {id:"monstre",cat:"peluches",name:"Petit monstre rose",sub:"Peluche au crochet · 40 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:300,dims:[44, 26, 15],size:"40 cm de haut",care:"peluche",
    photos:["img/monstre.jpg", "img/monstre-detail.jpg"],
    desc:"Un monstre tout rose et tout gentil, pour apprivoiser les peurs du soir et égayer une chambre."},
-  {id:"tortue",cat:"peluches",name:"Tortue des mers",sub:"Peluche au crochet · 10 cm",mode:"stock",stock:1,price:29,draft:false,fair:{mat:3,h:4},weight:70,dims:[16, 14, 10],size:"10 cm",care:"peluche",
+  {id:"tortue",cat:"peluches",name:"Tortue des mers",sub:"Peluche au crochet · 10 cm",mode:"stock",stock:1,price:22,draft:false,fair:{mat:1.5,h:3},weight:70,dims:[16, 14, 10],size:"10 cm",care:"peluche",
    photos:["img/tortue.jpg", "img/tortue-profil.jpg"],
    desc:"Une tortue à carapace crochetée, douce et rassurante, qui se pose partout."},
-  {id:"abeille",cat:"peluches",name:"Petite abeille",sub:"Peluche au crochet · 50 cm",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"peluche",
+  {id:"abeille",cat:"peluches",name:"Petite abeille",sub:"Peluche au crochet · 50 cm",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"peluche",
    photos:["img/abeille.jpg", "img/abeille-detail.jpg"],
    desc:"Une abeille rayée aux petites ailes, gaie et colorée, pour les amoureux du jardin."},
-  {id:"epouvantail",cat:"peluches",name:"Épouvantail",sub:"Poupée au crochet · 34 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:280,dims:[38, 25, 14],size:"34 cm de haut",care:"poupee",
+  {id:"epouvantail",cat:"peluches",name:"Épouvantail",sub:"Poupée au crochet · 34 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:280,dims:[38, 25, 14],size:"34 cm de haut",care:"poupee",
    photos:["img/epouvantail.jpg", "img/epouvantail-detail.jpg"],
    desc:"Chapeau de paille, chemise rapiécée et sourire tranquille : un épouvantail de caractère pour une déco d'automne."},
-  {id:"pantin",cat:"peluches",name:"Pantin au chapeau jaune",sub:"Poupée au crochet · 50 cm",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"poupee",
+  {id:"pantin",cat:"peluches",name:"Pantin au chapeau jaune",sub:"Poupée au crochet · 50 cm",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"poupee",
    photos:["img/pantin-face.jpg", "img/pantin-34.jpg"],
    desc:"Un pantin en bois… de laine, chapeau jaune à plume, nœud et bretelles, crocheté et assemblé à la main."},
-  {id:"tachete",cat:"peluches",name:"Peluche tachetée à longue queue",sub:"Peluche au crochet · 50 cm",mode:"stock",stock:1,price:95,draft:false,fair:{mat:8,h:12},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"peluche",
+  {id:"tachete",cat:"peluches",name:"Peluche tachetée à longue queue",sub:"Peluche au crochet · 50 cm",mode:"stock",stock:1,price:59,draft:false,fair:{mat:5,h:10},weight:380,dims:[54, 30, 15],size:"50 cm de haut",care:"peluche",
    photos:["img/jaune-face.jpg", "img/jaune-detail.jpg"],
    desc:"Une peluche jaune à taches noires et à très longue queue, aussi drôle à câliner qu'à exposer."},
-  {id:"baleine-jaune",cat:"peluches",name:"Petite baleine jaune",sub:"Mini doudou au crochet · 7 cm",mode:"stock",stock:1,price:14,draft:false,fair:{mat:1,h:0.75},weight:40,dims:[14, 12, 8],size:"7 cm",care:"peluche",
+  {id:"baleine-jaune",cat:"peluches",name:"Petite baleine jaune",sub:"Mini doudou au crochet · 7 cm",mode:"stock",stock:1,price:12,draft:false,fair:{mat:0.5,h:0.75},weight:40,dims:[14, 12, 8],size:"7 cm",care:"peluche",
    photos:["img/baleine-jaune.jpg", "img/baleines.jpg"],
    desc:"Une mini baleine qui tient dans la main, parfaite pour un petit cadeau ou une première peluche."},
-  {id:"baleine-rose",cat:"peluches",name:"Petite baleine rose",sub:"Mini doudou au crochet · 7 cm",mode:"stock",stock:1,price:14,draft:false,fair:{mat:1,h:0.75},weight:40,dims:[14, 12, 8],size:"7 cm",care:"peluche",
+  {id:"baleine-rose",cat:"peluches",name:"Petite baleine rose",sub:"Mini doudou au crochet · 7 cm",mode:"stock",stock:1,price:12,draft:false,fair:{mat:0.5,h:0.75},weight:40,dims:[14, 12, 8],size:"7 cm",care:"peluche",
    photos:["img/baleine-rose.jpg", "img/baleines.jpg"],
    desc:"La sœur rose de la baleine jaune : toute petite, toute douce, à offrir seule ou en duo."},
-  {id:"hippo-creme",cat:"peluches",name:"Doudou hippopotame crème",sub:"Doudou plat au crochet · 40 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:180,dims:[42, 30, 8],size:"40 cm",care:"peluche",
+  {id:"hippo-creme",cat:"peluches",name:"Doudou hippopotame crème",sub:"Doudou plat au crochet · 40 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:180,dims:[42, 30, 8],size:"40 cm",care:"peluche",
    photos:["img/hippo-creme.jpg", "img/hippos.jpg"],
    desc:"Un doudou plat facile à attraper pour les petites mains, tête d'hippopotame toute douce."},
-  {id:"hippo-vert",cat:"peluches",name:"Doudou hippopotame vert",sub:"Doudou plat au crochet · 40 cm",mode:"stock",stock:1,price:65,draft:false,fair:{mat:6,h:7},weight:180,dims:[42, 30, 8],size:"40 cm",care:"peluche",
+  {id:"hippo-vert",cat:"peluches",name:"Doudou hippopotame vert",sub:"Doudou plat au crochet · 40 cm",mode:"stock",stock:1,price:39,draft:false,fair:{mat:3,h:4.5},weight:180,dims:[42, 30, 8],size:"40 cm",care:"peluche",
    photos:["img/hippo-vert.jpg", "img/hippos.jpg"],
    desc:"Le même doudou hippopotame en vert tendre : léger, souple, à emporter partout."},
-  {id:"pieuvre",cat:"peluches",name:"Petite pieuvre",sub:"Doudou au crochet · 14 cm",mode:"stock",stock:1,price:29,draft:false,fair:{mat:3,h:4},weight:90,dims:[18, 16, 10],size:"14 cm",care:"peluche",
+  {id:"pieuvre",cat:"peluches",name:"Petite pieuvre",sub:"Doudou au crochet · 14 cm",mode:"stock",stock:1,price:22,draft:false,fair:{mat:1.5,h:3},weight:90,dims:[18, 16, 10],size:"14 cm",care:"peluche",
    photos:["img/pieuvre.jpg"],
    desc:"Une pieuvre aux tentacules frisés, un classique des doudous au crochet, rassurant et tout doux."},
-  {id:"grenouille",cat:"peluches",name:"Grenouille Rainette",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:29,draft:false,fair:{mat:3,h:4},weight:120,dims:[20,16,12],size:"15 cm de haut",care:"peluche",
+  {id:"grenouille",cat:"peluches",name:"Grenouille Rainette",sub:"Peluche au crochet · 15 cm",mode:"stock",stock:1,price:22,draft:false,fair:{mat:1.5,h:3},weight:120,dims:[20,16,12],size:"15 cm de haut",care:"peluche",
    photos:["img/grenouille.jpg"],
    desc:"Une petite grenouille vert tendre aux yeux ronds et au ventre plus foncé, assise bien sagement : une peluche douce et rigolote pour une chambre d'enfant ou une étagère."},
-  {id:"nuit-marine",cat:"reves",name:"Attrape-rêves Nuit marine",sub:"Ø 50 cm · dentelle bleu marine, plumes blanches",mode:"stock",stock:1,price:79,draft:false,fair:{mat:10,h:7},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
+  {id:"nuit-marine",cat:"reves",name:"Attrape-rêves Nuit marine",sub:"Ø 50 cm · dentelle bleu marine, plumes blanches",mode:"stock",stock:1,price:65,draft:false,fair:{mat:8,h:6},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
    photos:["img/attrape-reves-bleu.jpg", "img/attrape-reves-bleu-dentelle.jpg", "img/attrape-reves-bleu-plumes.jpg"],
    desc:"Une dentelle bleu marine crochetée au centre du cercle, des plumes blanches et des rubans qui ondulent au moindre courant d'air."},
-  {id:"ciel-ete",cat:"reves",name:"Attrape-rêves triple Ciel d'été",sub:"Trois cercles de 20, 15 et 10 cm, dentelle bleu ciel",mode:"stock",stock:1,price:49,draft:false,fair:{mat:9,h:2.5},weight:250,dims:[50, 25, 6],size:"Cercles de 20, 15 et 10 cm",care:"reve",
+  {id:"ciel-ete",cat:"reves",name:"Attrape-rêves triple Ciel d'été",sub:"Trois cercles de 20, 15 et 10 cm, dentelle bleu ciel",mode:"stock",stock:1,price:49,draft:false,fair:{mat:7,h:2.5},weight:250,dims:[50, 25, 6],size:"Cercles de 20, 15 et 10 cm",care:"reve",
    photos:["img/triple.jpg", "img/triple-haut.jpg", "img/triple-plumes.jpg"],
    desc:"Trois cercles de dentelle bleu ciel reliés en cascade, plumes et rubans : une pièce qui habille tout un mur."},
-  {id:"mandala-dore",cat:"reves",name:"Mandala doré",sub:"Ø 50 cm · dentelle dorée, plumes et rubans",mode:"stock",stock:1,price:79,draft:false,fair:{mat:10,h:7},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
+  {id:"mandala-dore",cat:"reves",name:"Mandala doré",sub:"Ø 50 cm · dentelle dorée, plumes et rubans",mode:"stock",stock:1,price:65,draft:false,fair:{mat:8,h:6},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
    photos:["img/mandala-dore.jpg", "img/mandala-dore-dentelle.jpg", "img/mandala-dore-rubans.jpg"],
    desc:"Un mandala de dentelle couleur or, rehaussé de plumes et de rubans, pour une touche lumineuse et bohème."},
-  {id:"lune-blanche",cat:"reves",name:"Mandala Lune blanche",sub:"Ø 50 cm · dentelle blanche à franges",mode:"stock",stock:1,price:79,draft:false,fair:{mat:10,h:7},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
+  {id:"lune-blanche",cat:"reves",name:"Mandala Lune blanche",sub:"Ø 50 cm · dentelle blanche à franges",mode:"stock",stock:1,price:65,draft:false,fair:{mat:8,h:6},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
    photos:["img/mandala-blanc.jpg", "img/mandala-blanc-detail.jpg", "img/mandala-blanc-franges.jpg"],
    desc:"Une grande dentelle écrue en forme de fleur, tendue dans un cercle blanc, et une cascade de longues franges : lumineux sur un mur coloré comme sur un mur clair."},
-  {id:"bois",cat:"reves",name:"Attrape-rêves Sous-bois",sub:"Ø 50 cm · cercle de liane, dentelle blanche, plumes brunes",mode:"stock",stock:1,price:79,draft:false,fair:{mat:10,h:7},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
+  {id:"bois",cat:"reves",name:"Attrape-rêves Sous-bois",sub:"Ø 50 cm · cercle de liane, dentelle blanche, plumes brunes",mode:"stock",stock:1,price:65,draft:false,fair:{mat:8,h:6},weight:400,dims:[56,56,8],size:"Ø 50 cm (cercle)",care:"reve",
    photos:["img/attrape-reves-bois.jpg", "img/attrape-reves-bois-detail.jpg", "img/attrape-reves-bois-plumes.jpg"],
    desc:"Une dentelle blanche tendue dans un cercle de liane tressée, des plumes brunes, des rubans d'organza chocolat et des perles blanches : un attrape-rêves aux tons chauds et naturels."},
   {id:"ensemble",cat:"vetements",name:"Ensemble à franges",sub:"Taille L · Haut et jupe au crochet",mode:"stock",stock:1,price:59,draft:true,weight:300,dims:[32, 26, 5],size:"Taille L",care:"vetement",
@@ -795,13 +795,14 @@ function logoFull(){
 }
 
 /* ---------- pricing, shipping, delays ---------- */
-const customPrice=c=>SIZES[c.size].price+(c.beads?4:0);
+const customPrice=c=>SIZES[c.size].price+(c.beads?2:0);
 function fairOf(p,custom){
-  if(p.mode==="custom"){const c=custom||S.custom,z=SIZES[c.size];const mat=z.mat+(c.beads?4:0);const price=customPrice(c);return {mat,h:z.h,labor:z.h*RATE,price,marg:price-mat-z.h*RATE}}
-  if(!p.fair)return null;
-  // temps payé au taux de référence, plafonné pour garder 10 % de marge (prix choisi sous le prix juste)
-  const labor=Math.min(p.fair.h*RATE,p.price-p.fair.mat-p.price*.1);
-  return {mat:p.fair.mat,h:p.fair.h,labor,rate:labor/p.fair.h,price:p.price,marg:p.price-p.fair.mat-labor};
+  let mat,h,price;
+  if(p.mode==="custom"){const c=custom||S.custom,z=SIZES[c.size];mat=z.mat+(c.beads?.5:0);h=z.h;price=customPrice(c)}
+  else{if(!p.fair)return null;mat=p.fair.mat;h=p.fair.h;price=p.price}
+  // cotisations micro-entreprise (12,3 %) + emballage et frais de paiement
+  const fees=price*.123+(price<20?2:price<50?2.5:3);
+  return {mat,h,price,fees,labor:Math.max(0,price-mat-fees)};
 }
 const RATES={
   mr:{name:"Mondial Relay",sub:"Point Relais",tiers:[[500,4.5],[1000,5.2],[2000,6.9],[5000,10.9],[10000,15.9]]},
@@ -862,14 +863,14 @@ function configurator(prefix){
   <div class="opt-group"><div class="opt-label">Couleur du cercle <span>${byId(HOOPS,c.hoop).name}</span></div><div class="swatches">${HOOPS.map(h=>`<button class="swatch" style="background:${h.c}" data-act="hoop" data-v="${h.id}" aria-pressed="${c.hoop===h.id}" aria-label="Cercle ${h.name}" title="${h.name}"></button>`).join("")}</div></div>
   <div class="opt-group"><div class="opt-label">Couleur des plumes <span>${byId(FEATHERS,c.feather).name}</span></div><div class="swatches">${FEATHERS.map(h=>`<button class="swatch" style="background:${h.c}" data-act="feather" data-v="${h.id}" aria-pressed="${c.feather===h.id}" aria-label="Plumes ${h.name}" title="${h.name}"></button>`).join("")}</div></div>
   ${prefix==="teaser"?"":`<div class="opt-group"><div class="opt-label">Bandes et rubans <span>${c.ribbons.length} / 3 choisis</span></div><div class="swatches">${RIBBONS.map(r=>`<button class="rib" data-act="ribbon" data-v="${r.id}" aria-pressed="${c.ribbons.includes(r.id)}"><i style="background:${r.c}"></i>${r.name}</button>`).join("")}</div></div>
-  <label class="check"><input type="checkbox" id="opt-beads" data-bind="beads" ${c.beads?"checked":""}><span><b>Perles en bois d'olivier</b> <span class="muted">+ 4 €</span></span></label>`}`;
+  <label class="check"><input type="checkbox" id="opt-beads" data-bind="beads" ${c.beads?"checked":""}><span><b>Perles en bois d'olivier</b> <span class="muted">+ 2 €</span></span></label>`}`;
 }
 function summaryHTML(){
   const c=S.custom,z=SIZES[c.size],p=PRODUCTS.find(x=>x.id==="surmesure");
   const rib=c.ribbons.length?c.ribbons.map(id=>byId(RIBBONS,id).name).join(", "):"Sans ruban";
   return `<div class="summary" aria-live="polite"><h4>Votre attrape-rêves</h4><dl class="kv">
   <dt>Taille</dt><dd>${z.name}, ${z.d}</dd><dt>Cercle</dt><dd>${byId(HOOPS,c.hoop).name}</dd><dt>Plumes</dt><dd>${byId(FEATHERS,c.feather).name}</dd>
-  <dt>Rubans</dt><dd>${esc(rib)}</dd><dt>Perles bois</dt><dd>${c.beads?"Oui (+ 4 €)":"Non"}</dd><dt>Confection</dt><dd>${p.conf[0]} à ${p.conf[1]} jours ouvrés</dd>
+  <dt>Rubans</dt><dd>${esc(rib)}</dd><dt>Perles bois</dt><dd>${c.beads?"Oui (+ 2 €)":"Non"}</dd><dt>Confection</dt><dd>${p.conf[0]} à ${p.conf[1]} jours ouvrés</dd>
   <dt class="tot">Prix</dt><dd class="tot">${eur(customPrice(c))}</dd></dl></div>`;
 }
 
@@ -1048,14 +1049,15 @@ function careHTML(type){
   return `<div class="care">${C.map(([k,t,s])=>`<div><svg viewBox="0 0 38 38" style="color:var(--sage-ink)" aria-hidden="true">${pic[k]}</svg><span><b>${t}</b><span>${s}</span></span></div>`).join("")}</div>
   <p class="muted small">Une fiche « Carnet de soins » imprimée est glissée dans chaque colis.</p>`;
 }
+const dureeFr=h=>h<1?`${Math.round(h*60)} min`:`${Math.floor(h)} h${h%1?" "+String(Math.round(h%1*60)).padStart(2,"0"):""}`;
 function fairHTML(f,showLink=true){
-  const tot=f.price, pc=x=>Math.max(0,x/tot*100).toFixed(1)+"%";
-  return `<div class="fairbar" aria-hidden="true"><i class="fb-mat" style="width:${pc(f.mat)}"></i><i class="fb-time" style="width:${pc(f.labor)}"></i><i class="fb-marg" style="width:${pc(f.marg)}"></i></div>
-  <div class="legend"><i class="fb-mat"></i><span>Matières premières (fils, plumes, perles, doublure)</span><b>${eur(f.mat)}</b>
-  <i class="fb-time"></i><span>Temps de travail : ${String(f.h).replace(".",",")} h × ${eur(Math.round((f.rate||RATE)*100)/100)}/h</span><b>${eur(f.labor)}</b>
-  <i class="fb-marg"></i><span>Marge atelier (emballage, outils, frais de vente)</span><b>${eur(f.marg)}</b>
+  const pc=x=>Math.max(0,x/f.price*100).toFixed(1)+"%";
+  return `<div class="fairbar" aria-hidden="true"><i class="fb-mat" style="width:${pc(f.mat)}"></i><i class="fb-time" style="width:${pc(f.labor)}"></i><i class="fb-fees" style="width:${pc(f.fees)}"></i></div>
+  <div class="legend"><i class="fb-mat"></i><span>Matières (laine, rembourrage, yeux, plumes, cercle…)</span><b>${eur(Math.round(f.mat*100)/100)}</b>
+  <i class="fb-time"></i><span>Travail de Fabienne : environ ${dureeFr(f.h)} de crochet et d'assemblage</span><b>${eur(Math.round(f.labor))}</b>
+  <i class="fb-fees"></i><span>Emballage, frais de paiement et cotisations</span><b>${eur(Math.round(f.fees))}</b>
   <span></span><span><b>Prix de vente</b></span><b>${eur(f.price)}</b></div>
-  ${showLink?`<p class="small muted">Le prix équitable, c'est payer les matières et le temps réel passé, pas seulement l'objet. <button class="link-btn" data-go="fair">Comprendre le calcul</button></p>`:""}`;
+  ${showLink?`<p class="small muted">L'essentiel du prix rémunère le temps passé à la main sur chaque pièce. <button class="link-btn" data-go="fair">Comprendre le calcul</button></p>`:""}`;
 }
 function tabHTML(p){
   const z=p.mode==="custom"?SIZES[S.custom.size]:null;
