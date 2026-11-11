@@ -1044,7 +1044,7 @@ function tabHTML(p){
   </tbody></table></div>
   <p class="small muted">Tarifs publics indicatifs des transporteurs, emballage compris. Une peluche part en général dans la tranche jusqu'à 500 g.</p>`;
   const dims=z?z.dims:p.dims, w=z?z.weight:p.weight;
-  return `<dl class="kv" style="max-width:460px"><dt>Catégorie</dt><dd>${CATS[p.cat]}</dd><dt>Mode d'achat</dt><dd>${MODES[p.mode]}</dd>${p.size?`<dt>Dimensions</dt><dd>${esc(p.size)}</dd>`:""}<dt>Matières</dt><dd>${MATIERES[p.cat]||""}</dd><dt>Poids de l'article</dt><dd>${w} g</dd><dt>Carton d'envoi</dt><dd>${dims.join(" × ")} cm</dd><dt>Fabrication</dt><dd>Atelier FC Créations, France</dd></dl>`;
+  return `<dl class="kv" style="max-width:460px"><dt>Catégorie</dt><dd>${CATS[p.cat]}</dd><dt>Mode d'achat</dt><dd>${MODES[p.mode]}</dd>${p.size?`<dt>Dimensions</dt><dd>${esc(p.size)}</dd>`:""}<dt>Matières</dt><dd>${MATIERES[p.cat]||""}${p.cat!=="reves"?"<br><span class=\"small muted\">Fil certifié OEKO-TEX® Standard 100</span>":""}</dd><dt>Poids de l'article</dt><dd>${w} g</dd><dt>Carton d'envoi</dt><dd>${dims.join(" × ")} cm</dd><dt>Fabrication</dt><dd>Atelier FC Créations, France</dd></dl>`;
 }
 
 V.custom=()=>`
